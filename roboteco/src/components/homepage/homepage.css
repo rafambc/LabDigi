@@ -1,0 +1,47 @@
+.bebidabotao {
+    background-color: #fff;
+    color: #00796b;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    margin: 10px; /* Add margin here */
+  }
+  
+  .bebidabotao:hover {
+    background-color: #004d40;
+    color: #fff;
+  }
+  
+/* homepage.css */
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .form-container input {
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    padding: 12px;
+    width: 120px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+  
+  .form-container input:focus {
+    border-color: #00796b;
+    outline: none;
+  }
+  
+  .form-container label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #00796b;
+  }
+  
