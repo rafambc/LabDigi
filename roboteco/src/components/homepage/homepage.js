@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Button, Box, TextField, Container, Grid, Card, CardContent, CardMedia } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, TextField, Container, Grid2, Card, CardContent, CardMedia } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import mqtt from 'mqtt';
 import './homepage.css';
@@ -59,36 +59,38 @@ const HomePage = () => {
     // Handle button click events and send the correct topic
     const handleIniciar = () => {
         console.log('Publishing INICIAR message');
-        
+
         // Function to convert a number into a 3-bit binary string
         const convertToBinary = (value) => {
             return value.toString(2).padStart(3, '0'); // Ensure it's 3 digits long
         };
-        
+
         // Convert bebida values to 3-bit binary strings
         const bebida1Binary = convertToBinary(bebida1);
         const bebida2Binary = convertToBinary(bebida2);
         const bebida3Binary = convertToBinary(bebida3);
-        
-        postData('ProjetoRoboteco_ESP32:INICIAR', '1')
+
+        postData('ProjetoRoboteco_ESP32:INICIAR', '1');
+        postData('ProjetoRoboteco_ESP32:RESET', '0');
+        postData('ProjetoRoboteco_ESP32:PARAR', '0');
         // Send each bit of the binary string to the respective topic
         postData('ProjetoRoboteco_ESP32:BEBIDA1_0', bebida1Binary[2]);
         postData('ProjetoRoboteco_ESP32:BEBIDA1_1', bebida1Binary[1]);
         postData('ProjetoRoboteco_ESP32:BEBIDA1_2', bebida1Binary[0]);
-    
+
         postData('ProjetoRoboteco_ESP32:BEBIDA2_0', bebida2Binary[2]);
         postData('ProjetoRoboteco_ESP32:BEBIDA2_1', bebida2Binary[1]);
         postData('ProjetoRoboteco_ESP32:BEBIDA2_2', bebida2Binary[0]);
-    
+
         postData('ProjetoRoboteco_ESP32:BEBIDA3_0', bebida3Binary[2]);
         postData('ProjetoRoboteco_ESP32:BEBIDA3_1', bebida3Binary[1]);
         postData('ProjetoRoboteco_ESP32:BEBIDA3_2', bebida3Binary[0]);
     };
-    
+
 
     const handleReset = () => {
         console.log('Publishing RESET message');
-        postData('ProjetoRoboteco_ESP32:RESET', '0');
+        postData('ProjetoRoboteco_ESP32:RESET', '1');
     };
 
     const handleParar = () => {
@@ -104,12 +106,15 @@ const HomePage = () => {
     return (
         <div style={{ backgroundColor: '#f5f5f5', minHeight: '100vh', paddingTop: '80px', paddingBottom: '40px' }}>
             <AppBar position="fixed" sx={{ backgroundColor: '#00796b' }}>
-                <Toolbar sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                    <Typography variant="h5" sx={{ fontFamily: 'Roboto, sans-serif' }}>
-                        Roboteco
-                    </Typography>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'center', width: '100%', padding: '10px' }}>
+                    <img
+                        src={require('../../LogoRoboteco.png')}
+                        alt="Logo"
+                        style={{ heighrot: '100px' }} // Corrected the height value
+                    />
                 </Toolbar>
             </AppBar>
+
 
             <Box sx={{
                 textAlign: 'center',
@@ -179,8 +184,8 @@ const HomePage = () => {
 
             {/* Displaying received data */}
             <Container maxWidth="lg">
-                <Grid container spacing={4} justifyContent="center">
-                    <Grid item xs={12} sm={6} md={4}>
+                <Grid2 container spacing={4} justifyContent="center">
+                    <Grid2 item xs={12} sm={6} md={4}>
                         <Card sx={{
                             borderRadius: '12px',
                             boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
@@ -208,9 +213,9 @@ const HomePage = () => {
                                 </Typography>
                             </CardContent>
                         </Card>
-                    </Grid>
+                    </Grid2>
                     {/* Repeat similar code for Bebida2, Bebida3 */}
-                </Grid>
+                </Grid2>
             </Container>
         </div>
     );
